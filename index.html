@@ -1,40 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kripa's Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="setOperator('+')">+</button>
-
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="setOperator('-')">-</button>
-
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="setOperator('*')">*</button>
-
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="setOperator('/')">/</button>
-            <button onclick="calculateResult()">=</button>
-            <button onclick="erase()">DEL</button>
-
-            <!-- <button onclick="equalto()">=</button> -->
-
+    <div class="page">
+        <div class="header">
+            <input class="display-area" type="text" disabled>
         </div>
+        <section class="calci">
+            <button class="c eras" onclick="clearAll()">AC</button>
+            <button class="erase eras" onclick="erase()">←</button>
+            <button class="divide col" onclick="operate('/')">/</button>
+            <button class="se num" onclick="join('7')">7</button>
+            <button class="ei num" onclick="join('8')">8</button>
+            <button class="ni num" onclick="join('9')">9</button>
+            <button class="multiply col" onclick="operate('*')">*</button>
+            <button class="fo num" onclick="join('4')">4</button>
+            <button class="fi num" onclick="join('5')">5</button>
+            <button class="si num" onclick="join('6')">6</button>
+            <button class="minus col" onclick="operate('-')">-</button>
+            <button class="on num" onclick="join('1')">1</button>
+            <button class="tw num" onclick="join('2')">2</button>
+            <button class="th num" onclick="join('3')">3</button>
+            <button class="plus col" onclick="operate('+')">+</button>
+            <button class="ze num" onclick="join('0')">0</button>
+            <button class="equal" onclick="equalto()">=</button>
+        </section>
     </div>
-    <script src="script.js"></script>
+    <script>
+        let input = '';
+        let operator = '';
+        let ans = '';
+        let displayValue = ''; // variable to keep track of the display
+
+        function join(num) {
+            input += num;
+            displayValue = input; // Updating display value with current input
+            display();
+        }
+
+        function operate(op) {
+            if (input === '' && ans === '') return; // no operation if nothing is entered
+            if (operator !== '') {
+                equalto();
+            }
+            operator = op;
+            ans = input || ans; // to make sure ans holds the correct value
+            input = '';
+            displayValue = ans + ' ' + operator + ' '; // Updating display with the current operand and operator
+            display();
+        }
+
+        function equalto() {
+            if (input === '' || operator === '') return; // Preventing calculation if input or operator is empty
+            let num1 = parseFloat(ans);
+            let num2 = parseFloat(input);
+            switch (operator) {
+                case '+':
+                    ans = num1 + num2;
+                    break;
+                case '-':
+                    ans = num1 - num2;
+                    break;
+                case '*':
+                    ans = num1 * num2;
+                    break;
+                case '/':
+                    ans = num2 !== 0 ? num1 / num2 : 'Error'; // Preventing division by zero
+                    break;
+            }
+            input = ans.toString();
+            operator = '';
+            displayValue = input; // Updating display to show the result
+            display();
+        }
+
+        function clearAll() {
+            input = '';
+            operator = '';
+            ans = '';
+            displayValue = ''; // Clearing the display value
+            display();
+        }
+
+        function erase() {
+            input = input.slice(0, -1);
+            displayValue = input; // Updating display value after erase
+            display();
+        }
+
+        function display() {
+            document.querySelector(".display-area").value = displayValue || '0';
+        }
+    </script>
 </body>
 </html>
