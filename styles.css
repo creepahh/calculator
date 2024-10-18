@@ -89,36 +89,37 @@ button.eras:focus {
 
 /* Specific buttons */
 .c {
-    grid-area: c;
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 .erase {
-    grid-area: erase;
+    grid-area: 1 / 2 / 2 / 3;
 }
 
+
+/* Number buttons  */
+.on { grid-area: 4 / 1 / 5 / 2; }
+.tw { grid-area: 4 / 2 / 5 / 3; }
+.th { grid-area: 4 / 3 / 5 / 4; }
+.fo { grid-area: 3 / 1 / 4 / 2; }
+.fi { grid-area: 3 / 2 / 4 / 3; }
+.si { grid-area: 3 / 3 / 4 / 4; }
+.se { grid-area: 2 / 1 / 3 / 2; }
+.ei { grid-area: 2 / 2 / 3 / 3; }
+.ni { grid-area: 2 / 3 / 3 / 4;; }
+.ze { grid-area: 5 / 1 / 6 / 3; }
+
+/* Operator buttons */
+.divide { grid-area: 1 / 3 / 2 / 4; }
+.multiply { grid-area: 2 / 4 / 3 / 5; }
+.minus { grid-area: 3 / 4 / 4 / 5; }
+.plus { grid-area: 4 / 4 / 5 / 5; } 
+
 .equal {
-    grid-area: equal;
+    grid-area: 5 / 3 / 6 / 5;
 }
 
 .equal:hover,
 .equal:focus {
     background-color: rgb(27, 109, 27);
 }
-
-/* Number buttons  */
-.on { grid-area: on; }
-.tw { grid-area: tw; }
-.th { grid-area: th; }
-.fo { grid-area: fo; }
-.fi { grid-area: fi; }
-.si { grid-area: si; }
-.se { grid-area: se; }
-.ei { grid-area: ei; }
-.ni { grid-area: ni; }
-.ze { grid-area: ze; }
-
-/* Operator buttons */
-.divide { grid-area: divide; }
-.multiply { grid-area: multiply; }
-.minus { grid-area: minus; }
-.plus { grid-area: plus; }
